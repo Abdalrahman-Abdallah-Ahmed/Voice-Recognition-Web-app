@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voice Recogintion</h1>
+        <form id="upload-form" method="POST" enctype="multipart/form-data" action="/predict">
+            <input type="file" name="record" accept="audio/*" required>
+            <button type="submit">Upload and Predict</button>
+        </form>
+        <div class="result">
+            {% if prediction_text == "its Zain" %}
+                <img src="static/builtin/WhatsApp Image 2024-03-30 at 23.30.21_57a32fcd.jpg" alt="zain" width="400" height="400">
+            {% elif prediction_text == "its Hossam" %}
+                <img src="static/builtin/WhatsApp Image 2024-05-17 at 03.58.03_ec6ccb5a.jpg" alt="hossam" width="400" height="400">
+            {% elif prediction_text == "its Geda" %}
+                <img src="static/builtin/WhatsApp Image 2024-05-17 at 03.58.16_3093f9a6.jpg" alt="geda" width="400" height="400">
+            {% elif prediction_text == "its Haridy" %}
+                <img src="static/builtin/WhatsApp Image 2024-05-17 at 03.58.16_40a1ebea.jpg" alt="Haridy" width="400" height="400">
+            {% elif prediction_text == "its 7masa" %}
+                <img src="static/builtin/WhatsApp Image 2024-05-17 at 04.00.58_88db0de6.jpg" alt="7masa" width="400" height="400">
+            {% elif prediction_text == "its Khaled" %}
+                <img src="static/builtin/WhatsApp Image 2024-05-17 at 03.58.16_b52ce4e8.jpg" alt="Khaled" width="400" height="400">
+            {%else%}
+                <p>{{ prediction_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
